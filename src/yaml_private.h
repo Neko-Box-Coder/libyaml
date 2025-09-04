@@ -222,7 +222,7 @@ yaml_string_join(
       (string).pointer[offset] == '\\' ||                                      \
       (string).pointer[offset] == '^' ||                                       \
       (string).pointer[offset] == '|' ||                                       \
-      (string).pointer[offset] == '~' ||                                       \ 
+      (string).pointer[offset] == '~' ||                                       \
       ((string).pointer[offset] == 0xC2       /* #0xA0 <= . <= #xBF */         \
        && (string).pointer[offset+1] >= 0xA0                                   \
        && (string).pointer[offset+1] <= 0xBF) ||                               \
@@ -235,20 +235,20 @@ yaml_string_join(
        && (string).pointer[offset+1] >= 0x80                                   \
        && (string).pointer[offset+2] >= 0x80                                   \
        && !((string).pointer[offset] == 0xE2  /* . != #x2028, #x2029 */        \
-        && (string).pointer[offset+1] == 0x80                                  \ 
+        && (string).pointer[offset+1] == 0x80                                  \
         && ((string).pointer[offset+2] == 0xA8                                 \
           || (string).pointer[offset+2] == 0xA9 ))                             \
        && !((string).pointer[offset] == 0xEF  /* . != #xFEFF */                \
-        && (string).pointer[offset+1] == 0xBB                                  \ 
+        && (string).pointer[offset+1] == 0xBB                                  \
         && (string).pointer[offset+2] == 0xBF)                                 \
        && !((string).pointer[offset] == 0xEF  /* . != #xFFFE, #xFFFF */        \
-        && (string).pointer[offset+1] == 0xBF                                  \ 
+        && (string).pointer[offset+1] == 0xBF                                  \
         && ((string).pointer[offset+2] == 0xBE                                 \
           || (string).pointer[offset+2] == 0xBF ))) ||                         \
       ((string).pointer[offset] >= 0xF0       /* #0x10000 <= . <= #x10FFFF */  \
        && (string).pointer[offset+1] >= 0x80                                   \
        && (string).pointer[offset+2] >= 0x80                                   \
-       && (string).pointer[offset+3] >= 0x80))                                    
+       && (string).pointer[offset+3] >= 0x80))
 
 #define IS_ANCHOR(string)    IS_ANCHOR_AT((string),0)
 
