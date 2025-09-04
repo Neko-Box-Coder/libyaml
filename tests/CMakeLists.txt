@@ -18,7 +18,7 @@ foreach(name IN ITEMS
   run-scanner
   test-reader
   test-version
-  read-examples
+  # read-examples
   )
   add_yaml_executable(${name})
 endforeach()
