@@ -145,7 +145,20 @@ int main(int argc, char *argv[])
             case YAML_ANY_SCALAR_STYLE:
                 abort();
             }
+            
             print_escaped(event.data.scalar.value, event.data.scalar.length);
+            
+            switch (event.data.scalar.style) {
+            case YAML_SINGLE_QUOTED_SCALAR_STYLE:
+                printf("'");
+                break;
+            case YAML_DOUBLE_QUOTED_SCALAR_STYLE:
+                printf("\"");
+                break;
+            default:
+                break;
+            }
+            
             printf("\n");
         }
         else if (type == YAML_ALIAS_EVENT)

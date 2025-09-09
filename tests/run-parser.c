@@ -8,6 +8,37 @@
 #endif
 #include <assert.h>
 
+char* yaml_event_type_to_str(yaml_event_type_t event)
+{
+    switch(event)
+    {
+        case YAML_NO_EVENT:
+            return "YAML_NO_EVENT";
+        case YAML_STREAM_START_EVENT:
+            return "YAML_STREAM_START_EVENT";
+        case YAML_STREAM_END_EVENT:
+            return "YAML_STREAM_END_EVENT";
+        case YAML_DOCUMENT_START_EVENT:
+            return "YAML_DOCUMENT_START_EVENT";
+        case YAML_DOCUMENT_END_EVENT:
+            return "YAML_DOCUMENT_END_EVENT";
+        case YAML_ALIAS_EVENT:
+            return "YAML_ALIAS_EVENT";
+        case YAML_SCALAR_EVENT:
+            return "YAML_SCALAR_EVENT";
+        case YAML_SEQUENCE_START_EVENT:
+            return "YAML_SEQUENCE_START_EVENT";
+        case YAML_SEQUENCE_END_EVENT:
+            return "YAML_SEQUENCE_END_EVENT";
+        case YAML_MAPPING_START_EVENT:
+            return "YAML_MAPPING_START_EVENT";
+        case YAML_MAPPING_END_EVENT:
+            return "YAML_MAPPING_END_EVEN";
+        default:
+            return "UNKNOWN";
+    }
+}
+
 int
 main(int argc, char *argv[])
 {
@@ -69,6 +100,7 @@ main(int argc, char *argv[])
                 break;
             }
 
+            printf("event[%d]: %s\n", count, yaml_event_type_to_str(event.type));
             done = (event.type == YAML_STREAM_END_EVENT);
 
             yaml_event_delete(&event);
